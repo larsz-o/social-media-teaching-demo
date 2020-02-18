@@ -11,10 +11,10 @@ app.use(
   })
 );
 
-app.get('/keywords', db.getKeywords);
-app.get('/keywords/:id', db.getKeywordsByID);
-app.post('/keywords', db.addKeyword);
-app.get('/news', db.getNews);
+app.get('/api/keywords', db.getKeywords);
+app.get('/api/keywords/:id', db.getKeywordsByID);
+app.post('/api/keywords', db.addKeyword);
+app.get('/api/news', db.getNews);
 
 app.listen(port, () => {
     console.log(`App running on port ${port}.`)

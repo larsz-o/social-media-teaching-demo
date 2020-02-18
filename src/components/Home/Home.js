@@ -42,7 +42,7 @@ class Home extends Component {
   getData = () => {
     axios({
       method: 'GET',
-      url: '/keywords'
+      url: 'api/keywords'
     }).then((results) => {
       console.log(results.data);
     })
