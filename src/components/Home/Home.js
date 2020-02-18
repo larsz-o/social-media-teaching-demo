@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PostBody from './PostBody';
-import axios from 'axios'; 
+import { connect } from 'react-redux'; 
+import swal from 'sweetalert';
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      news: [{ title: 'title', body: '<p>Body</p>', image: 'something.png', showRating: 1 }],
       icons: ['email.png', 'facebook.png', 'twitter.png', 'linkedin.png'],
       keyword: '',
       group_id: 0, 
@@ -14,21 +14,12 @@ class Home extends Component {
     }
   }
   addKeywords = () => {
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
-    const url = "https://protected-bastion-03943.herokuapp.com/keywords/";
-    fetch(proxyurl + url, {
-      method: 'POST',
-      data: {name: this.state.keyword, group: this.state.group_id}
-    }).then((response) => {
-      console.log('success');
-      this.setState({
-        ...this.state,
-        keyword: ''
-      })
-      this.getData();
-    }).catch((error) => {
-      console.log('Error adding keywords', error);
-    })
+   this.props.dispatch({type: 'ADD_KEYWORD', payload: {name: this.state.keyword, group: this.state.group_id}});
+   this.setState({
+     ...this.state,
+     keyword: ''
+   });
+   swal('Success!', 'Try adding some more?', 'success');
   }
   componentDidMount() {
     const { match: { params } } = this.props;
@@ -37,16 +28,9 @@ class Home extends Component {
       ...this.state, 
       group_id: group_id
     })
-    this.getData();
+
   }
-  getData = () => {
-    axios({
-      method: 'GET',
-      url: 'api/keywords'
-    }).then((results) => {
-      console.log(results.data);
-    })
-  }
+  
 
   handleChange = (event) => {
     this.setState({
@@ -59,13 +43,13 @@ class Home extends Component {
     return (
       <div>
         <div className="nav-bar">
-          {JSON.stringify(this.state)}
+          {JSON.stringify(this.props.keywords)}
           <p className="helper-text">Not seeing what you want? Improve our algorithm by telling us your favorite topics. One at a time, please.</p>
           <div className="flex-box flex-center"> <input value={this.state.keyword} onChange={(event) => this.handleChange(event)} className="column-3" /><button onClick={this.addKeywords}>Submit</button></div>
         </div>
         <div className="header">
           <h1>Your Top Story</h1>
-          {this.state.news.map((story, i) => {
+          {this.props.data.map((story, i) => {
             return (
               <div key={i}>
                 <h2>{story.title}</h2>
@@ -85,4 +69,8 @@ class Home extends Component {
       </div>)
   }
 }
-export default Home; 
+const mapStateToProps = state => ({
+  keywords: state.keywords.keywords,
+  data: state.data.articles
+})
+export default connect(mapStateToProps)(Home); 
