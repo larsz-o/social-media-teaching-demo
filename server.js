@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-port = process.env.PORT || 3000;
+port = process.env.PORT || 5000;
 const db = require('./api/routes/queries');
 
 app.use(bodyParser.json());

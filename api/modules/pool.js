@@ -22,7 +22,7 @@ if (process.env.DATABASE_URL) {
   };
 } else {
   config = {
-    host: process.env.DB_URL, // Server hosting the postgres database
+    host: process.env.DB_HOST, // Server hosting the postgres database
     port: 5432, // env var: PGPORT
     database: process.env.DB_NAME, 
     user: process.env.DB_USER,

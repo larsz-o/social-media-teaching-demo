@@ -11,7 +11,6 @@ function App() {
         <Switch>
           <Route exact path="/" component={NoGroup}/>
           <Route path="/:group_id" component={Home}/>
-          <Route path="/contribute/:group"/>
         </Switch>
       </Router>
     </div>
