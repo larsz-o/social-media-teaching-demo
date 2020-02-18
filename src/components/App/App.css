@@ -1,0 +1,12 @@
+a {
+  color: #C2D076;
+}
+.warning {
+  background-color: black;
+  min-height: 100vh;
+  color: white;
+}
+.warning-text {
+  margin: 0;
+  padding: 25vh;
+}
