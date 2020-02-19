@@ -23,13 +23,15 @@ class Home extends Component {
   }
   componentDidMount() {
     const { match: { params } } = this.props;
-    const group_id = params.group_id; 
+    const group_id = parseInt(params.group_id); 
     this.setState({
       ...this.state, 
       group_id: group_id
     })
     // when page loads, sort by group id. 
-    this.props.dispatch({type: 'SORT_DATA', payload: {group: group_id, keywords: this.props.keywords}});
+    let keywordsToSort = this.props.keywords.filter(keyword => keyword.group === group_id);
+    console.log(keywordsToSort);
+    this.props.dispatch({type: 'SORT_DATA', payload: {group: group_id, keywords: keywordsToSort}});
   }
   getMore = () => {
     let more = this.props.data.slice(1);
