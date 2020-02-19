@@ -1,7 +1,7 @@
 
 import { combineReducers } from 'redux';
 
-const articles = (state = [{ title: 'title', body: '<p> Body test test2 test1 </p>', image: 'something.png', showRating: 0 }, { title: 'title', body: '<p> Nothing here but test test test test test </p>', image: 'something.png', showRating: 0 }], action) => {
+const articles = (state = [{ title: 'Title of the Story', body: '<h3> This is a story. </h3><p> Let us test it out. </p>', image: 'something.png', showRating: 0 }, { title: 'Title of another story.', body: '<p> This one is all about test test test test testing. </p>', image: 'something.png', showRating: 0 }], action) => {
     if (action.type === 'SET_ARTICLES') {
         return action.payload;
     } else if (action.type === 'SORT_DATA') {
