@@ -84,8 +84,8 @@ class Home extends Component {
             )
           })}
         </div>
-        {!this.state.see && <div className="nav-bar"><span className="link" onClick={()=>this.getMore()}>See more</span></div>}
-        {this.state.see &&<div className="nav-bar"><span className="link" onClick={()=>this.setState({...this.state, see: false})}>Hide</span></div>}
+        {!this.state.see && <div className="nav-bar" onClick={()=>this.getMore()}><a href="#top-0" className="link">See more</a></div>}
+        {this.state.see &&<div className="nav-bar" onClick={()=>this.setState({...this.state, see: false})}><a className="link">Hide</a></div>}
          {this.state.see && <div className="main-body">{this.state.seeMore.map((story, i) => {
              return (
               <div className="story" id={`top-${i}`} key={i}>
