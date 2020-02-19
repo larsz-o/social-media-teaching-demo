@@ -40,7 +40,8 @@ class Home extends Component {
       ...this.state,
       seeMore: more,
       see: true
-    })
+    });
+    window.moveTo(0,10000);
   }
   handleChange = (event) => {
     this.setState({
@@ -49,7 +50,7 @@ class Home extends Component {
     })
   }
   triggerAlert = () => {
-    swal(`Let's keep this between us.`, 'Think before you share.', 'error');
+    swal(`Let's keep this between us.`, 'Think before you share', 'error');
   }
   render() {
     let topStory = [];
@@ -61,7 +62,7 @@ class Home extends Component {
       <div>
         <div className="nav-bar">
           <p className="helper-text">Not seeing what you want? Improve our algorithm by telling us your favorite topics. One at a time, please.</p>
-          <div className="flex-box flex-center"> <input value={this.state.keyword} onChange={(event) => this.handleChange(event)} className="column-3" /><button onClick={this.addKeywords}>Submit</button></div>
+          <div className="flex-box flex-center"> <input value={this.state.keyword} onChange={(event) => this.handleChange(event)} className="column-3" /><button className="column-1" onClick={this.addKeywords}>Submit</button></div>
         </div>
         <div className="header">
           <h1 className="column-6">Your Top Story</h1>
@@ -84,9 +85,10 @@ class Home extends Component {
           })}
         </div>
         {!this.state.see && <div className="nav-bar"><span className="link" onClick={()=>this.getMore()}>See more</span></div>}
+        {this.state.see &&<div className="nav-bar"><span className="link" onClick={()=>this.setState({...this.state, see: false})}>Hide</span></div>}
          {this.state.see && <div className="main-body">{this.state.seeMore.map((story, i) => {
              return (
-              <div className="story" key={i}>
+              <div className="story" id={`top-${i}`} key={i}>
                 <h2><a href={story.url}>{story.title}</a></h2>
                 <em>{story.author}</em>
                 <div className="flex-box flex-between column-12">
