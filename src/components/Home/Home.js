@@ -47,6 +47,9 @@ class Home extends Component {
       keyword: event.target.value
     })
   }
+  triggerAlert = () => {
+    swal(`Let's keep this between us.`, 'Think before you share.', 'error');
+  }
   render() {
     let topStory = [];
     if(this.props.data.length > 0) {
@@ -68,7 +71,7 @@ class Home extends Component {
                 <div><PostBody post={story} /></div>
                 <div className="flex-box">
                   {this.props.icons.map((icon, i) => {
-                    return (<img key={i} className="icon" src={require(`../images/${icon}`)} alt="social media" />)
+                    return (<img onClick={this.triggerAlert} key={i} className="icon" src={require(`../images/${icon}`)} alt="social media" />)
                   })}
                 </div>
               </div>
@@ -83,7 +86,7 @@ class Home extends Component {
                 <div><PostBody post={story} /></div>
                 <div className="flex-box">
                   {this.props.icons.map((icon, i) => {
-                    return (<img key={i} className="icon" src={require(`../images/${icon}`)} alt="social media" />)
+                    return (<img key={i} onClick={this.triggerAlert} className="icon" src={require(`../images/${icon}`)} alt="social media" />)
                   })}
                 </div>
               </div>
