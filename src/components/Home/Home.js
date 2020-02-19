@@ -32,9 +32,7 @@ class Home extends Component {
     this.props.dispatch({type: 'SORT_DATA', payload: {group: group_id, keywords: this.props.keywords}});
   }
   getMore = () => {
-    let more = this.props.data;
-   //figure out how to remove just the first item without altering props. 
-    console.log(more);
+    let more = this.props.data.slice(1);
     this.setState({
       ...this.state,
       seeMore: more,
