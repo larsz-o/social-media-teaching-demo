@@ -35,6 +35,7 @@ class Home extends Component {
   }
   getMore = () => {
     let more = this.props.data.slice(1);
+    more.splice(4, more.length);
     this.setState({
       ...this.state,
       seeMore: more,
@@ -63,12 +64,16 @@ class Home extends Component {
           <div className="flex-box flex-center"> <input value={this.state.keyword} onChange={(event) => this.handleChange(event)} className="column-3" /><button onClick={this.addKeywords}>Submit</button></div>
         </div>
         <div className="header">
-          <h1>Your Top Story</h1>
+          <h1 className="column-6">Your Top Story</h1>
           {topStory.map((story, i) => {
             return (
               <div key={i}>
-                <h2>{story.title}</h2>
-                <div><PostBody post={story} /></div>
+                <h2><a href={story.url}>{story.title}</a></h2>
+                <em>{story.author}</em>
+                <div className="flex-box flex-between">
+                <div className="column-5"><PostBody post={story} /></div>
+                {story.image.length > 1 && <img className="column-6" src={story.image} alt={story.title} height="400"/>}
+                </div>
                 <div className="flex-box">
                   {this.props.icons.map((icon, i) => {
                     return (<img onClick={this.triggerAlert} key={i} className="icon" src={require(`../images/${icon}`)} alt="social media" />)
@@ -81,9 +86,13 @@ class Home extends Component {
         {!this.state.see && <div className="nav-bar"><span className="link" onClick={()=>this.getMore()}>See more</span></div>}
          {this.state.see && <div className="main-body">{this.state.seeMore.map((story, i) => {
              return (
-              <div key={i}>
-                <h2>{story.title}</h2>
-                <div><PostBody post={story} /></div>
+              <div className="story" key={i}>
+                <h2><a href={story.url}>{story.title}</a></h2>
+                <em>{story.author}</em>
+                <div className="flex-box flex-between column-12">
+                  <div className="column-6"><PostBody post={story} /></div>
+                  {story.image.length > 1 &&<img className="column-5" src={story.image} alt={story.title} height="400"/>}
+                </div>
                 <div className="flex-box">
                   {this.props.icons.map((icon, i) => {
                     return (<img key={i} onClick={this.triggerAlert} className="icon" src={require(`../images/${icon}`)} alt="social media" />)
