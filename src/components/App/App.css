@@ -39,6 +39,9 @@ input {
   color: green;
   cursor: pointer;
 }
+.main-body {
+  padding: 10vh;
+}
 .nav-bar {
   padding: 25px;
   background-color: rgba(115, 115, 115, .1);
