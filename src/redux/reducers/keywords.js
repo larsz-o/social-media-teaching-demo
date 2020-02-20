@@ -33,6 +33,7 @@ const keywords = (state = [
     {name: `incarceration`, group: 3},
     {name: `surveillance`, group: 3},
     {name: `asylum`, group: 3},
+    {name: `people`, group: 3},
 ], action) => {
     if (action.type === 'SET_KEYWORDS'){
         return action.payload;
