@@ -1,9 +1,7 @@
 import { combineReducers } from 'redux';
 
 const keywords = (state = [
-    {name: 'protection', group: 1}, 
     {name: 'Trump', group: 1},
-    {name: 'wall', group: 1},
     {name: 'defense', group: 1}, 
     {name: 'contracts', group: 1}, 
     {name: 'secure', group: 1},

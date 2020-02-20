@@ -6,7 +6,7 @@ class NoGroup extends Component {
             <div className="warning">
                 <div className="warning-text">
                     <h1>This is a restricted page.  <img src={require('../images/password.png')} alt="locked" height="50px" /></h1>
-                    <p>To view your news, add your access number to the URL above. For example: <a href="https://social-risks-demo.herokuapp.com/1">https://social-risks-demo.herokuapp.com/1</a></p>
+                    <p>To view your news, add your access number to the URL above. For example: <a href="https://fierce-wildwood-58452.herokuapp.com//1">https://fierce-wildwood-58452.herokuapp.com/1</a></p>
 
                 </div>
 
