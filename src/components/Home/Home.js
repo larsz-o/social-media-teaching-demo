@@ -87,21 +87,26 @@ class Home extends Component {
         {!this.state.see && <div className="nav-bar" onClick={()=>this.getMore()}><a href="#0" className="link">See more</a></div>}
         {this.state.see &&<div className="nav-bar" onClick={()=>this.setState({...this.state, see: false})}><span className="link">Hide</span></div>}
          {this.state.see && <div className="main-body">{this.state.seeMore.map((story, i) => {
-             return (
-              <div className="story" id={i} key={i}>
-                <h2><a href={story.url}>{story.title}</a></h2>
-                <em>{story.author}</em>
-                <div className="flex-box flex-between column-12">
-                  <div className="column-6"><PostBody post={story} /></div>
-                  {story.image.length > 1 &&<img className="column-5" src={story.image} alt={story.title} height="400"/>}
+             if(story.showRating >= 5){
+              return (
+                <div className="story" id={i} key={i}>
+                  <h2><a href={story.url}>{story.title}</a></h2>
+                  <em>{story.author}</em>
+                  <div className="flex-box flex-between column-12">
+                    <div className="column-6"><PostBody post={story} /></div>
+                    {story.image.length > 1 &&<img className="column-5" src={story.image} alt={story.title} height="400"/>}
+                  </div>
+                  <div className="flex-box">
+                    {this.props.icons.map((icon, i) => {
+                      return (<img key={i} onClick={this.triggerAlert} className="icon" src={require(`../images/${icon}`)} alt="social media" />)
+                    })}
+                  </div>
                 </div>
-                <div className="flex-box">
-                  {this.props.icons.map((icon, i) => {
-                    return (<img key={i} onClick={this.triggerAlert} className="icon" src={require(`../images/${icon}`)} alt="social media" />)
-                  })}
-                </div>
-              </div>
-            )
+              )
+             } else {
+               return false;
+             }
+          
           })}
         </div>}
 
