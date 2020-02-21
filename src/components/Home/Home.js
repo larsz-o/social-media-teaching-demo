@@ -87,7 +87,7 @@ class Home extends Component {
         {!this.state.see && <div className="nav-bar" onClick={()=>this.getMore()}><a href="#0" className="link">See more</a></div>}
         {this.state.see &&<div className="nav-bar" onClick={()=>this.setState({...this.state, see: false})}><span className="link">Hide</span></div>}
          {this.state.see && <div className="main-body">{this.state.seeMore.map((story, i) => {
-             if(story.showRating >= 5){
+             if(story.showRating >= 4){
               return (
                 <div className="story" id={i} key={i}>
                   <h2><a href={story.url}>{story.title}</a></h2>
